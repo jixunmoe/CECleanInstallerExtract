@@ -1,0 +1,2 @@
+#define EXTRACTORDLL_API __declspec(dllexport)
+#define EXTRACTORDLL_API __declspec(dllimport)

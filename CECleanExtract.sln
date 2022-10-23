@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CECleanExtract", "CECleanExtract\CECleanExtract.vcxproj", "{0D37D895-1684-408E-8BEE-241B1F6F49AA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExtractorDLL", "ExtractorDLL\ExtractorDLL.vcxproj", "{998A749D-E14B-4394-B9D4-4A0AD5C3F145}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D37D895-1684-408E-8BEE-241B1F6F49AA}.Debug|x86.ActiveCfg = Debug|Win32
+		{0D37D895-1684-408E-8BEE-241B1F6F49AA}.Debug|x86.Build.0 = Debug|Win32
+		{0D37D895-1684-408E-8BEE-241B1F6F49AA}.Release|x86.ActiveCfg = Release|Win32
+		{0D37D895-1684-408E-8BEE-241B1F6F49AA}.Release|x86.Build.0 = Release|Win32
+		{998A749D-E14B-4394-B9D4-4A0AD5C3F145}.Debug|x86.ActiveCfg = Debug|Win32
+		{998A749D-E14B-4394-B9D4-4A0AD5C3F145}.Debug|x86.Build.0 = Debug|Win32
+		{998A749D-E14B-4394-B9D4-4A0AD5C3F145}.Release|x86.ActiveCfg = Release|Win32
+		{998A749D-E14B-4394-B9D4-4A0AD5C3F145}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB6992D4-F081-4B75-99B5-858109861F58}
+	EndGlobalSection
+EndGlobal
