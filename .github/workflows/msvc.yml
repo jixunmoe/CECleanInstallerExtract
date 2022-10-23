@@ -50,9 +50,10 @@ jobs:
             ce_name="CheatEngine${ce_version/\./}.exe"
             echo "file=$ce_name"
 
-            curl -fsL -o"$ce_name" \
+            curl >/dev/null -fsL -o"$ce_name" \
               "https://github.com/cheat-engine/cheat-engine/releases/download/${ce_version}/${ce_name}"
             ./Release/CECleanExtract.exe "${ce_name}" skip-pause
+            echo ''
           done
           printf '</pre>'
           echo '</body>'
