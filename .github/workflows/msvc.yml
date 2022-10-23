@@ -1,0 +1,57 @@
+name: MSBuild
+
+on:
+  push:
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: CECleanExtract.sln
+  BUILD_CONFIGURATION: Release
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+    - name: 🛎️ checkout
+      uses: actions/checkout@v3
+
+    - name: 🏭 prepare MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: 🔧 build
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      # Add additional options to the MSBuild command line here (like platform or verbosity level).
+      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
+      run: |
+        Set-PSDebug -Trace 1
+
+        msbuild /m `
+          /p:Configuration=${{ env.BUILD_CONFIGURATION }} `
+          ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Download & extract clean installer path...
+      shell: bash
+      run: |
+        set -ex
+
+        {
+          echo '<html>'
+          echo '  <head>'
+          echo '    <title>Clean Cheat Engine Installer URLs</title>'
+          echo '  </head>'
+          echo '<body>'
+          printf '<pre>'
+          for ce_version in 7.0 7.1 7.2 7.3 7.4; do
+            ce_name="CheatEngine${ce_version/\./}.exe"
+            echo "file=$ce_name"
+
+            wget "https://github.com/cheat-engine/cheat-engine/releases/download/${ce_version}/${ce_name}"
+            ./Release/CECleanExtract.exe "${ce_name}" skip-pause
+          done
+          printf '</pre>'
+          echo '</body>'
+          echo '</head>'
+        } | tee index.html
