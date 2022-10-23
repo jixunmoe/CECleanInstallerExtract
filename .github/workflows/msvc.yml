@@ -37,7 +37,7 @@ jobs:
       run: |
         set -ex
 
-        mkdir -p public/
+        mkdir -p dist/
 
         {
           echo '<html>'
@@ -57,11 +57,37 @@ jobs:
           printf '</pre>'
           echo '</body>'
           echo '</html>'
-        } | tee public/index.html
+        } | tee dist/index.html
+
+    - name: "🚀 Upload dist directory"
+      uses: actions/upload-artifact@v3
+      with:
+        name: gh-pages
+        path: dist/
+
+    - name: "🚀 Upload executable"
+      uses: actions/upload-artifact@v3
+      with:
+        name: win32
+        path: Release/
+
+  deploy:
+    name: "Deploy"
+    needs: [build]
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+
+    steps:
+    - name: "🍱 Fetching built artifact..."
+      uses: actions/download-artifact@v3
+      with:
+        name: gh-pages
+        path: dist
 
     - name: 🚀 Deploy
       if: github.ref == 'refs/heads/main'
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
-        folder: public
+        folder: dist
