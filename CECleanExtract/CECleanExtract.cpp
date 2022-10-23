@@ -48,6 +48,7 @@ int wmain(int argc, wchar_t* argv[])
 		fprintf(stderr, "Usage:\n");
 		fprintf(stderr, "\n");
 		fwprintf(stderr, L"  \"%s\" \"<path to installer>\"\n", argv[0]);
+		fwprintf(stderr, L"  \"%s\" \"<path to installer>\" skip-pause\n", argv[0]);
 		fprintf(stderr, "\n");
 		fprintf(stderr, "Note: This program will invoke the executable passed in. Do not run with un-trusted files.\n");
 		fprintf(stderr, "\n");
