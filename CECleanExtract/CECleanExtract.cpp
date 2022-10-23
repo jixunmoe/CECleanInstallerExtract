@@ -42,6 +42,8 @@ int wmain(int argc, wchar_t* argv[])
 	fprintf(stderr, "CE Clean Installer Extractor v0.1 (pid = %lu)\n", pid);
 	fprintf(stderr, "\n");
 
+	bool do_skip = argc == 3;
+
 	if (argc < 2) {
 		fprintf(stderr, "Usage:\n");
 		fprintf(stderr, "\n");
@@ -91,6 +93,10 @@ int wmain(int argc, wchar_t* argv[])
 	}
 
 	wprintf(L"\nurl=%s\n", my_callback_data.data);
+
+	if (!do_skip) {
+		system("pause");
+	}
 
 	return 0;
 }
