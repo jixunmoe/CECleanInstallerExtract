@@ -88,12 +88,23 @@ int wmain(int argc, wchar_t* argv[])
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
 
+	int timeoutCounter = 5000 / 50;
 	while (!my_callback_data.ready) {
 		fprintf(stderr, ".");
 		Sleep(50);
+
+#if !NDEBUG
+		if (--timeoutCounter <= 0) {
+			break;
+		}
+#endif
 	}
 
-	wprintf(L"\nurl=%s\n", my_callback_data.data);
+	if (my_callback_data.ready) {
+		wprintf(L"\nurl=%s\n", my_callback_data.data);
+	} else {
+		fprintf(stderr, "ERROR: Timeout\n");
+	}
 
 	if (!do_skip) {
 		system("pause");
