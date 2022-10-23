@@ -37,6 +37,8 @@ jobs:
       run: |
         set -ex
 
+        mkdir -p public/
+
         {
           echo '<html>'
           echo '  <head>'
@@ -48,11 +50,18 @@ jobs:
             ce_name="CheatEngine${ce_version/\./}.exe"
             echo "file=$ce_name"
 
-            curl -L -o"$ce_name" \
+            curl -fsL -o"$ce_name" \
               "https://github.com/cheat-engine/cheat-engine/releases/download/${ce_version}/${ce_name}"
             ./Release/CECleanExtract.exe "${ce_name}" skip-pause
           done
           printf '</pre>'
           echo '</body>'
-          echo '</head>'
-        } | tee index.html
+          echo '</html>'
+        } | tee public/index.html
+
+    - name: 🚀 Deploy
+      if: github.ref == 'refs/heads/main'
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: public
