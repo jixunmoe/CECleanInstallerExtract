@@ -44,7 +44,7 @@ jobs:
           echo '  </head>'
           echo '<body>'
           printf '<pre>'
-          for ce_version in 7.0 7.1 7.2 7.3 7.4; do
+          for ce_version in 7.3 7.4; do
             ce_name="CheatEngine${ce_version/\./}.exe"
             echo "file=$ce_name"
 
