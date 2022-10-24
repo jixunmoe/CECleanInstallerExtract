@@ -56,6 +56,16 @@ jobs:
             echo ''
           done
           printf '</pre>'
+          echo '
+            <p>Hint: use inno-extract for a clean file, e.g.:</p>
+            <pre>innoextract.exe --extract CheatEngine74.exe --output-dir ce74</pre>
+            <p>
+              Remember to checkout the repo:
+              <a href="https://github.com/jixunmoe/CECleanInstallerExtract">
+                <code>jixunmoe/CECleanInstallerExtract</code>
+              </a>
+            </p>
+          '
           echo '</body>'
           echo '</html>'
         } | tee dist/index.html
